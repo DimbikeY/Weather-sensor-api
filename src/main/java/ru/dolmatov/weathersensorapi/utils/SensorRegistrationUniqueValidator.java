@@ -22,7 +22,7 @@ public class SensorRegistrationUniqueValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return Sensor.class.equals(clazz);
+        return SensorRegistrationRequestDTO.class.equals(clazz);
     }
 
     @Override
