@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class SensorRegistrationRequestDTO {
+public class SensorRequestDTO {
 
     @NotNull(message = "The name must have any names")
     @Size(min = 3, max = 30, message = "The size should be between 3 and 30")

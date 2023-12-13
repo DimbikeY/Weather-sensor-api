@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.dolmatov.weathersensorapi.models.Sensor;
 import ru.dolmatov.weathersensorapi.repositories.SensorsRepository;
-import ru.dolmatov.weathersensorapi.request.dto.SensorRegistrationRequestDTO;
+import ru.dolmatov.weathersensorapi.request.dto.SensorRequestDTO;
 
 import java.util.Optional;
 
@@ -22,12 +22,12 @@ public class SensorsService {
     }
 
     @Transactional
-    public void saveNewSensors(SensorRegistrationRequestDTO registrationRequestDTO) {
+    public void saveNewSensors(SensorRequestDTO registrationRequestDTO) {
         Sensor modelToSave = transformFromDTOToModel(registrationRequestDTO);
         sensorsRepository.save(modelToSave);
     }
 
-    public Sensor transformFromDTOToModel(SensorRegistrationRequestDTO requestDTO){
+    public Sensor transformFromDTOToModel(SensorRequestDTO requestDTO){
         return modelMapper.map(requestDTO, Sensor.class);
     }
 

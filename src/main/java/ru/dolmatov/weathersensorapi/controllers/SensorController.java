@@ -7,13 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.dolmatov.weathersensorapi.exceptions.BadRequestPropertiesException;
-import ru.dolmatov.weathersensorapi.exceptions.responses.BadRequestPropertiesResponse;
-import ru.dolmatov.weathersensorapi.request.dto.SensorRegistrationRequestDTO;
+import ru.dolmatov.weathersensorapi.request.dto.SensorRequestDTO;
 import ru.dolmatov.weathersensorapi.services.SensorsService;
 import ru.dolmatov.weathersensorapi.utils.SensorRegistrationUniqueValidator;
 
@@ -35,7 +33,7 @@ public class SensorController {
     @PostMapping("/registration")
     public ResponseEntity<HttpStatus> addSensor(@RequestBody
                                                 @Valid
-                                                SensorRegistrationRequestDTO registrationRequestDTO,
+                                                    SensorRequestDTO registrationRequestDTO,
                                                 BindingResult bindingResult) {
         registrationUniqueValidator.validate(registrationRequestDTO, bindingResult);
         if (bindingResult.hasErrors()) {
@@ -48,10 +46,5 @@ public class SensorController {
         }
         sensorsService.saveNewSensors(registrationRequestDTO);
         return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @ExceptionHandler
-    public ResponseEntity<BadRequestPropertiesResponse> sendBadRequestPropertiesRespond(BadRequestPropertiesException e) {
-        return new ResponseEntity<>(new BadRequestPropertiesResponse(e.getMessage(), System.currentTimeMillis()), HttpStatus.BAD_REQUEST);
     }
 }

@@ -26,6 +26,6 @@ public class Sensor {
     @Size(min = 3, max = 30, message = "The size should be between 3 and 30")
     private String name;
 
-    @OneToMany(mappedBy = "sensorId")
+    @OneToMany(mappedBy = "sensor")
     private List<Measurement> measurements;
 }

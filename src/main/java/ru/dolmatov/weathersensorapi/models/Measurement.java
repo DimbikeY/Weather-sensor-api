@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
@@ -33,10 +34,10 @@ public class Measurement {
     private boolean isRaining;
 
     @Column(name = "date")
+    @NotNull(message = "Date must be not null")
     private LocalDateTime date;
 
     @ManyToOne
     @JoinColumn(name = "sensor_id")
-    private Sensor sensorId;
-
+    private Sensor sensor;
 }
