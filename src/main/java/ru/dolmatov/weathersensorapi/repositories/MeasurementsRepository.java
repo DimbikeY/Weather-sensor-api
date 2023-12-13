@@ -10,4 +10,6 @@ public interface MeasurementsRepository extends JpaRepository<Measurement, Integ
 
     @Query("select m from Measurement m left join fetch m.sensor")
     List<Measurement> findAll();
+
+    List<Measurement> findAllByIsRainingIsTrue();
 }

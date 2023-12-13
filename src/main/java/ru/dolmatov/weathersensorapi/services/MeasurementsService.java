@@ -10,7 +10,9 @@ import ru.dolmatov.weathersensorapi.request.dto.MeasurementRequestDTO;
 import ru.dolmatov.weathersensorapi.response.dto.MeasurementResponseDTO;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class MeasurementsService {
@@ -44,7 +46,8 @@ public class MeasurementsService {
     public Measurement transformFromDTOToModel(MeasurementRequestDTO registrationRequestDTO) {
         return mapper.map(registrationRequestDTO, Measurement.class);
     }
-    public MeasurementResponseDTO transformFromModelToDTO(Measurement measurementToTransform){
+
+    public MeasurementResponseDTO transformFromModelToDTO(Measurement measurementToTransform) {
         return mapper.map(measurementToTransform, MeasurementResponseDTO.class);
     }
 
@@ -53,5 +56,13 @@ public class MeasurementsService {
         List<Measurement> measurements = measurementsRepository.findAll();
         System.out.println("posle");
         return measurements.stream().map(this::transformFromModelToDTO).toList();
+    }
+
+    public Map<String, Integer> countRainyDays() {
+        Map<String, Integer> mapToSend = new HashMap<>();
+        List<Measurement> rainyDaysListMeasurements = measurementsRepository.findAllByIsRainingIsTrue();
+        mapToSend.put("Count", rainyDaysListMeasurements.size());
+
+        return mapToSend;
     }
 }

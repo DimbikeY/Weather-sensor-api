@@ -17,6 +17,7 @@ import ru.dolmatov.weathersensorapi.services.MeasurementsService;
 import ru.dolmatov.weathersensorapi.utils.MeasurementsSensorRegistrationValidator;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/measurements")
@@ -38,6 +39,12 @@ public class MeasurementController {
 
         List<MeasurementResponseDTO> responseDTOListToSend = measurementsService.findAllMeasurements();
         return new ResponseEntity<>(responseDTOListToSend, HttpStatus.OK);
+    }
+
+    @GetMapping("/rainyDaysCount")
+    public ResponseEntity<Map<String, Integer>> getRainyDaysMeasurements() {
+
+        return new ResponseEntity<>(measurementsService.countRainyDays(), HttpStatus.OK);
     }
 
     @PostMapping("/add")
