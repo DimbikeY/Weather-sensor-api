@@ -15,6 +15,7 @@ import ru.dolmatov.weathersensorapi.exceptions.BadRequestPropertiesException;
 import ru.dolmatov.weathersensorapi.exceptions.responses.BadRequestPropertiesResponse;
 import ru.dolmatov.weathersensorapi.request.dto.SensorRegistrationRequestDTO;
 import ru.dolmatov.weathersensorapi.services.SensorsService;
+import ru.dolmatov.weathersensorapi.utils.SensorRegistrationUniqueValidator;
 
 import java.util.List;
 
@@ -23,17 +24,20 @@ import java.util.List;
 public class SensorController {
 
     private final SensorsService sensorsService;
+    private final SensorRegistrationUniqueValidator registrationUniqueValidator;
 
     @Autowired
-    public SensorController(SensorsService sensorsService) {
+    public SensorController(SensorsService sensorsService, SensorRegistrationUniqueValidator registrationUniqueValidator) {
         this.sensorsService = sensorsService;
+        this.registrationUniqueValidator = registrationUniqueValidator;
     }
 
     @PostMapping("/registration")
     public ResponseEntity<HttpStatus> addSensor(@RequestBody
-                                @Valid
-                                SensorRegistrationRequestDTO registrationRequestDTO,
-                                BindingResult bindingResult) {
+                                                @Valid
+                                                SensorRegistrationRequestDTO registrationRequestDTO,
+                                                BindingResult bindingResult) {
+        registrationUniqueValidator.validate(registrationRequestDTO, bindingResult);
         if (bindingResult.hasErrors()) {
             StringBuilder msgError = new StringBuilder();
             List<FieldError> errorList = bindingResult.getFieldErrors();
@@ -42,7 +46,6 @@ public class SensorController {
                     .append(fieldError.getField()));
             throw new BadRequestPropertiesException(msgError.toString());
         }
-        //TODO: добавь проверку на то, есть ли такой в БД
         sensorsService.saveNewSensors(registrationRequestDTO);
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -8,6 +8,8 @@ import ru.dolmatov.weathersensorapi.models.Sensor;
 import ru.dolmatov.weathersensorapi.repositories.SensorsRepository;
 import ru.dolmatov.weathersensorapi.request.dto.SensorRegistrationRequestDTO;
 
+import java.util.Optional;
+
 @Service
 public class SensorsService {
     private final ModelMapper modelMapper;
@@ -27,5 +29,10 @@ public class SensorsService {
 
     public Sensor transformFromDTOToModel(SensorRegistrationRequestDTO requestDTO){
         return modelMapper.map(requestDTO, Sensor.class);
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<Sensor> findSensorByName(String name) {
+        return sensorsRepository.findByName(name);
     }
 }
