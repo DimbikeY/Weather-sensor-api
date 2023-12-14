@@ -41,7 +41,7 @@ public class WeatherSensorApiApplication {
                 temperatureToAdd *= -1f;
             }
 
-            requestToAddMeasurementDTO.setValue(temperatureToAdd);
+            requestToAddMeasurementDTO.setTemperature(temperatureToAdd);
             requestToAddMeasurementDTO.setRaining(booleanToAdd);
             requestToAddMeasurementDTO.setSensor(sensor);
 
@@ -62,7 +62,7 @@ public class WeatherSensorApiApplication {
         List<Double> yData = new ArrayList<>();
         for (int i = 0; i < getResultList.length; i++) {
             xData.add((double) i);
-            yData.add((double) getResultList[i].getValue());
+            yData.add((double) getResultList[i].getTemperature());
         }
         System.setProperty("java.awt.headless", "true");
         XYChart chart = QuickChart.getChart("Sample Chart", "Time", "Temperature", "y(x)", xData, yData);

@@ -16,7 +16,7 @@ public class MeasurementRequestDTO {
     @NotNull(message = "Must be any value")
     @Min(value = -100, message = "Min must be higher than -100")
     @Max(value = 100, message = "Max must be not higher than 100")
-    private float value;
+    private float temperature;
 
     @NotNull(message = "Must be any value")
     private boolean isRaining;

@@ -25,7 +25,6 @@ public class MeasurementController {
     private final MeasurementsService measurementsService;
     private final MeasurementsSensorRegistrationValidator measurementsSensorRegistrationValidator;
 
-
     @Autowired
     public MeasurementController(MeasurementsService measurementsService,
                                  MeasurementsSensorRegistrationValidator measurementsSensorRegistrationValidator) {

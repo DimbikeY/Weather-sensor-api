@@ -39,7 +39,7 @@ public class MeasurementsService {
     }
 
     private static void enrichMeasurementModel(Measurement measurementToSave, Sensor sensorToAddToMeasurement) {
-        measurementToSave.setDate(LocalDateTime.now());
+        measurementToSave.setTimeMeasurement(LocalDateTime.now());
         measurementToSave.setSensor(sensorToAddToMeasurement);
     }
 
