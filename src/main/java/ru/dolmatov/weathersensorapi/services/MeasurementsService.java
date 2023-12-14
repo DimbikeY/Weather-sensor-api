@@ -52,9 +52,7 @@ public class MeasurementsService {
     }
 
     public List<MeasurementResponseDTO> findAllMeasurements() {
-        System.out.println("do");
         List<Measurement> measurements = measurementsRepository.findAll();
-        System.out.println("posle");
         return measurements.stream().map(this::transformFromModelToDTO).toList();
     }
 
