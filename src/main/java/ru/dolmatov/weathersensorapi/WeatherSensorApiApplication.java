@@ -25,7 +25,7 @@ public class WeatherSensorApiApplication {
     public static void main(String[] args) throws InterruptedException {
         SpringApplication.run(WeatherSensorApiApplication.class, args);
 
-        Thread.sleep(3000);
+        /*Thread.sleep(3000);
         String url = "http://localhost:8081/measurements/add";
 
         SensorRequestDTO sensor = new SensorRequestDTO();
@@ -70,7 +70,7 @@ public class WeatherSensorApiApplication {
             BitmapEncoder.saveBitmapWithDPI(chart, "./Sample_Chart_300_DPI", BitmapEncoder.BitmapFormat.PNG, 300);
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
+        } */
     }
 
     @Bean

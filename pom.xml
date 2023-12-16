@@ -82,7 +82,6 @@
             <artifactId>jacoco-maven-plugin</artifactId>
             <version>0.8.11</version>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -93,7 +92,7 @@
                 <configuration>
                     <excludes>
                         <exclude>
-                            <groupId>org.projectlombok</groupId>
+                            <groupId>org.project-lombok</groupId>
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>

@@ -10,7 +10,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 import ru.dolmatov.weathersensorapi.models.Sensor;
 
 @RunWith(SpringRunner.class)
@@ -20,13 +20,10 @@ import ru.dolmatov.weathersensorapi.models.Sensor;
 public class SensorTest {
 
     @Autowired
-    private MockMvc mockMvc;
-
-    @Autowired
     private TestRestTemplate restTemplate;
 
     @Test
-    public void createSensor() throws Exception {
+    public void createSensorTest() {
         String url = "/sensors/registration";
 
         HttpHeaders httpHeaders = new HttpHeaders();
