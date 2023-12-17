@@ -1,5 +1,6 @@
 package ru.dolmatov.weathersensorapi.response.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import ru.dolmatov.weathersensorapi.request.dto.SensorRequestDTO;
 
+@Schema(description = "Contains temperature, the info if it rains, sensor")
 @Getter
 @Setter
 @NoArgsConstructor

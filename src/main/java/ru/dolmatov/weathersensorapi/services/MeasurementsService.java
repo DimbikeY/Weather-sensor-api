@@ -53,9 +53,7 @@ public class MeasurementsService {
 
     @Transactional(readOnly = true)
     public List<MeasurementResponseDTO> findAllMeasurements() {
-        System.out.println("Before");
         List<Measurement> measurements = measurementsRepository.findAll();
-        System.out.println(measurements.size());
         return measurements.stream().map(this::transformFromModelToDTO).toList();
     }
 

@@ -1,5 +1,8 @@
 package ru.dolmatov.weathersensorapi;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Contact;
+import io.swagger.v3.oas.annotations.info.Info;
 import org.knowm.xchart.BitmapEncoder;
 import org.knowm.xchart.QuickChart;
 import org.knowm.xchart.XYChart;
@@ -20,12 +23,24 @@ import java.util.List;
 import java.util.Random;
 
 @SpringBootApplication
+
+@OpenAPIDefinition(
+        info = @Info(
+                title = "Weather-sensor-api",
+                description = "weather sensor", version = "1.0.0",
+                contact = @Contact(
+                        name = "Dmitrii Dolmatov",
+                        email = "dimonelas@mail.ru",
+                        url = "tg:@DimbikeY"
+                )
+        )
+)
 public class WeatherSensorApiApplication {
 
     public static void main(String[] args) throws InterruptedException {
         SpringApplication.run(WeatherSensorApiApplication.class, args);
 
-        /*Thread.sleep(3000);
+        Thread.sleep(3000);
         String url = "http://localhost:8081/measurements/add";
 
         SensorRequestDTO sensor = new SensorRequestDTO();
@@ -70,11 +85,12 @@ public class WeatherSensorApiApplication {
             BitmapEncoder.saveBitmapWithDPI(chart, "./Sample_Chart_300_DPI", BitmapEncoder.BitmapFormat.PNG, 300);
         } catch (IOException e) {
             throw new RuntimeException(e);
-        } */
+        }
     }
 
     @Bean
-    public ModelMapper modelMapper(){
+    public ModelMapper modelMapper() {
         return new ModelMapper();
     }
+
 }
