@@ -1,5 +1,8 @@
 package ru.dolmatov.weathersensorapi;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Contact;
+import io.swagger.v3.oas.annotations.info.Info;
 import org.knowm.xchart.BitmapEncoder;
 import org.knowm.xchart.QuickChart;
 import org.knowm.xchart.XYChart;
@@ -20,6 +23,18 @@ import java.util.List;
 import java.util.Random;
 
 @SpringBootApplication
+
+@OpenAPIDefinition(
+        info = @Info(
+                title = "Weather-sensor-api",
+                description = "weather sensor", version = "1.0.0",
+                contact = @Contact(
+                        name = "Dmitrii Dolmatov",
+                        email = "dimonelas@mail.ru",
+                        url = "tg:@DimbikeY"
+                )
+        )
+)
 public class WeatherSensorApiApplication {
 
     public static void main(String[] args) throws InterruptedException {
@@ -41,7 +56,7 @@ public class WeatherSensorApiApplication {
                 temperatureToAdd *= -1f;
             }
 
-            requestToAddMeasurementDTO.setValue(temperatureToAdd);
+            requestToAddMeasurementDTO.setTemperature(temperatureToAdd);
             requestToAddMeasurementDTO.setRaining(booleanToAdd);
             requestToAddMeasurementDTO.setSensor(sensor);
 
@@ -62,7 +77,7 @@ public class WeatherSensorApiApplication {
         List<Double> yData = new ArrayList<>();
         for (int i = 0; i < getResultList.length; i++) {
             xData.add((double) i);
-            yData.add((double) getResultList[i].getValue());
+            yData.add((double) getResultList[i].getTemperature());
         }
         System.setProperty("java.awt.headless", "true");
         XYChart chart = QuickChart.getChart("Sample Chart", "Time", "Temperature", "y(x)", xData, yData);
@@ -74,7 +89,8 @@ public class WeatherSensorApiApplication {
     }
 
     @Bean
-    public ModelMapper modelMapper(){
+    public ModelMapper modelMapper() {
         return new ModelMapper();
     }
+
 }

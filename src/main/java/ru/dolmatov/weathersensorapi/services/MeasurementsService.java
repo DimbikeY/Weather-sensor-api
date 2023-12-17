@@ -39,7 +39,7 @@ public class MeasurementsService {
     }
 
     private static void enrichMeasurementModel(Measurement measurementToSave, Sensor sensorToAddToMeasurement) {
-        measurementToSave.setDate(LocalDateTime.now());
+        measurementToSave.setTimeMeasurement(LocalDateTime.now());
         measurementToSave.setSensor(sensorToAddToMeasurement);
     }
 
@@ -51,6 +51,7 @@ public class MeasurementsService {
         return mapper.map(measurementToTransform, MeasurementResponseDTO.class);
     }
 
+    @Transactional(readOnly = true)
     public List<MeasurementResponseDTO> findAllMeasurements() {
         List<Measurement> measurements = measurementsRepository.findAll();
         return measurements.stream().map(this::transformFromModelToDTO).toList();
