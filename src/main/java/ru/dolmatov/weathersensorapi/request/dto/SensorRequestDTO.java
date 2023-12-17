@@ -1,11 +1,13 @@
 package ru.dolmatov.weathersensorapi.request.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Schema(description = "Contains name of a sensor")
 @Getter
 @Setter
 @NoArgsConstructor

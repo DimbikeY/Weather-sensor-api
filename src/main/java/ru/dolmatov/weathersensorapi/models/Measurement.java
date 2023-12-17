@@ -22,19 +22,19 @@ public class Measurement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "value")
+    @Column(name = "temperature")
     @NotNull(message = "Must be any value")
     @Min(value = -100, message = "Min must be higher than -100")
     @Max(value = 100, message = "Max must be not higher than 100")
-    private float value;
+    private float temperature;
 
     @Column(name = "is_raining")
     @NotNull(message = "Must be any value")
     private boolean isRaining;
 
-    @Column(name = "date")
+    @Column(name = "time_measurement")
     @NotNull(message = "Date must be not null")
-    private LocalDateTime date;
+    private LocalDateTime timeMeasurement;
 
     @ManyToOne
     @JoinColumn(name = "sensor_id")

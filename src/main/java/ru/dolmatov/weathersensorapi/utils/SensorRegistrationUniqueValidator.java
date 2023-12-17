@@ -11,7 +11,7 @@ import ru.dolmatov.weathersensorapi.services.SensorsService;
 import java.util.Optional;
 
 @Component
-public class SensorRegistrationUniqueValidator implements Validator {
+public class    SensorRegistrationUniqueValidator implements Validator {
 
     private final SensorsService sensorsService;
 
